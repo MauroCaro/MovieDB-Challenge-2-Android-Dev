@@ -7,6 +7,7 @@ import com.app.moviedb.base.navigation.Destination
 import com.app.moviedb.base.navigation.NavHost
 import androidx.navigation.*
 import com.app.moviedb.base.navigation.composable
+import com.app.moviedb.home.compose.HomeScreen
 
 @Composable
 fun MainNavigation(navController: NavHostController) {
@@ -15,9 +16,9 @@ fun MainNavigation(navController: NavHostController) {
         startDestination = Destination.HomeScreen
     ) {
         composable(destination = Destination.HomeScreen) {
-            // HomeScreen()
+            HomeScreen()
             //val loginViewModelL: LoginViewModel = hiltViewModel()
-           // ViewEventHost(loginViewModelL)
+            // ViewEventHost(loginViewModelL)
         }
         composable(destination = Destination.DetailScreen) {
         }

@@ -1,11 +1,10 @@
 package com.app.moviedb.base.viewmodel
 
-
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.app.login.base.bottom_sheet.BottomSheetBuilder
-import com.app.login.base.bottom_sheet.DialogButtonsType
+import com.app.moviedb.base.ui.bottom_sheet.BottomSheetBuilder
+import com.app.moviedb.base.ui.bottom_sheet.DialogButtonsType
 import com.app.moviedb.base.model.ShowDialog
 import com.app.moviedb.base.model.ViewEffect
 import kotlinx.coroutines.CoroutineExceptionHandler

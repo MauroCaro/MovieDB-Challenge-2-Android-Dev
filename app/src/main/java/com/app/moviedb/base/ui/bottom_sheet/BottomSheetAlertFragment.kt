@@ -1,11 +1,11 @@
-package com.app.login.base.bottom_sheet
+package com.app.moviedb.base.ui.bottom_sheet
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
-import com.app.ui_commons.bottom_dialog.BottomSheetContent
+import com.app.ui_common.components.bottom_dialog.BottomSheetContent
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BottomSheetAlertFragment : BottomSheetDialogFragment() {

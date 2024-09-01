@@ -1,5 +1,4 @@
-package com.app.login.base.bottom_sheet
-
+package com.app.moviedb.base.ui.bottom_sheet
 
 typealias OnClickListener = () -> Unit
 
