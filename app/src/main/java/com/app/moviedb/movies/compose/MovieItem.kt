@@ -57,6 +57,6 @@ fun MovieItem(movie: MovieUI) {
 @Preview(showBackground = true)
 fun PreviewMovieItem() {
     AppTheme {
-        MovieItem(MovieUI(1, "The Shawshank Redemption", "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg"))
+        MovieItem(MovieUI("1", "The Shawshank Redemption", "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg"))
     }
 }

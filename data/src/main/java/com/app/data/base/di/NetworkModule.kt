@@ -1,5 +1,6 @@
 package com.app.data.base.di
 
+import com.app.data.base.remote.RetrofitProvider
 import com.app.data.movies.remote.MovieAPI
 import dagger.Module
 import dagger.Provides
@@ -14,13 +15,8 @@ import javax.inject.Singleton
 object NetworkModule {
 
     @Provides
-    fun provideBaseUrl(): String = "https://api.themoviedb.org/3/"
-
-    @Provides
     @Singleton
-    fun provideRetrofit(baseUrl: String): Retrofit = Retrofit.Builder()
-        .baseUrl(baseUrl)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-
+    fun provideRetrofit(): Retrofit {
+        return RetrofitProvider().provideRetrofit
+    }
 }

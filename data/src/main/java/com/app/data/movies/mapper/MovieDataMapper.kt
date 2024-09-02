@@ -12,11 +12,15 @@ class MovieDataMapper @Inject constructor() : MapperData<MovieEntity, MoviePojo>
             remotePojo.id,
             remotePojo.title,
             remotePojo.overview,
-            remotePojo.posterPath,
+            "$IMAGE_URL${remotePojo.posterPath}",
             remotePojo.voteAverage,
             remotePojo.isForAdult,
             remotePojo.releaseDate
         )
 
+    }
+
+    companion object {
+        private const val IMAGE_URL = "https://image.tmdb.org/t/p/w500/"
     }
 }

@@ -1,4 +1,4 @@
-package com.app.moviedb.movies.compose
+package com.app.moviedb.series.compose
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.app.moviedb.base.main.theme.AppTheme
+import com.app.moviedb.movies.compose.MovieItem
 import com.app.moviedb.movies.model.MovieUI
 import com.app.moviedb.movies.model.MovieUIState
 import com.app.moviedb.movies.viewmodel.MovieViewModel
@@ -23,7 +24,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
-fun MoviesScreen(
+fun SeriesScreen(
     innerPadding: PaddingValues,
     viewModel: MovieViewModel = hiltViewModel(),
 ) {
@@ -32,13 +33,13 @@ fun MoviesScreen(
         is MovieUIState.Loading -> GeneralLoadingScreen()
         is MovieUIState.Empty -> GeneralEmptyScreen()
         is MovieUIState.Show -> {
-            Movies(innerPadding, state.movies)
+            Series(innerPadding, state.movies)
         }
     }
 }
 
 @Composable
-fun Movies(
+fun Series(
     innerPadding: PaddingValues,
     movies: ImmutableList<MovieUI>,
 ) {
@@ -62,9 +63,9 @@ fun Movies(
 
 @Composable
 @Preview(showBackground = true)
-fun PreviewMovies() {
+fun PreviewSeries() {
     AppTheme {
-        Movies(
+        Series(
             PaddingValues(),
             persistentListOf(
                 MovieUI("1", "The Shawshank Redemption", "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg"),

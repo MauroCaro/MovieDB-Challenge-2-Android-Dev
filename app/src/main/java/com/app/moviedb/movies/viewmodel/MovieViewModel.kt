@@ -1,6 +1,6 @@
 package com.app.moviedb.movies.viewmodel
 
-import com.app.domain.movies.uc.GetMoviesUC
+import com.app.domain.movies.uc.GetAllMoviesUC
 import com.app.moviedb.base.viewmodel.BaseViewModel
 import com.app.moviedb.movies.mapper.MovieUIMapper
 import com.app.moviedb.movies.model.MovieUIState
@@ -10,7 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieViewModel @Inject constructor(
     private val movieUIMapper: MovieUIMapper,
-    private val getMoviesUC: GetMoviesUC
+    private val getMoviesUC: GetAllMoviesUC
 ) : BaseViewModel<MovieUIState>(MovieUIState.Loading) {
 
     init {
@@ -21,5 +21,9 @@ class MovieViewModel @Inject constructor(
         getMoviesUC.invoke().collect {
             _state.value = movieUIMapper.buildUI(it)
         }
+    }
+
+    fun refresh() = launchWithErrorHandlingDefault {
+        getMoviesUC.refresh()
     }
 }
