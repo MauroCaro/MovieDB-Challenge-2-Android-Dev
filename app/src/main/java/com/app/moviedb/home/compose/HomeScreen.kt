@@ -16,7 +16,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.app.moviedb.movies.compose.MoviesScreen
 
-
 @Composable
 fun HomeScreen() {
     var selectedItem by remember { mutableStateOf(0) }
@@ -48,7 +47,7 @@ fun HomeScreen() {
 @Composable
 fun Navigation(selectedItem: Int, innerPadding: androidx.compose.foundation.layout.PaddingValues) {
     when (selectedItem) {
-        0 -> MoviesScreen(innerPadding)
+        0 -> MoviesScreen()
         1 -> SeriesScreen(innerPadding)
         2 -> ProfileScreen(innerPadding)
     }

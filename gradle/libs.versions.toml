@@ -24,12 +24,20 @@ roomRuntime = "2.6.1"
 roomCompiler = "2.6.1"
 roomKtx = "2.6.1"
 roomPaging = "2.6.1"
-uiTextGoogleFonts = "1.6.8"
+coil = "2.4.0"
+runtimeCompose = "2.8.4"
+kotlinCollection = "0.3.5"
+composeConstrain = "1.0.1"
+retrofit = "2.9.0"
+gson = "2.10.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-androidx-junit-v112 = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
 androidx-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "uiToolingPreviewAndroid" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "composeConstrain" }
+coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "runtimeCompose" }
+kotlinx-collections = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinCollection" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 hilt-android-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hiltAndroid" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -53,7 +61,10 @@ androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = 
 androidx-room-paging = { group = "androidx.room", name = "room-paging", version.ref = "roomPaging" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
-androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
+
+retrofit-core = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

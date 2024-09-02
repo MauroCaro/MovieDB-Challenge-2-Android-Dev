@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -30,9 +32,20 @@ android {
 }
 
 dependencies {
-
-    implementation(libs.androidx.core.ktx)
+    implementation(project(":domain"))
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.paging)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.hilt.android)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.gson)
+    implementation(libs.gson)
+    implementation(kotlin("reflect"))
+    implementation(libs.androidx.core.ktx)
+    kapt(libs.hilt.android.compiler)
+    kapt(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

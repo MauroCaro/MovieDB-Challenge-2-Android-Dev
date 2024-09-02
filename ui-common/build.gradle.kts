@@ -41,6 +41,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.material3.android)
     implementation(libs.androidx.ui.tooling.preview.android)
+    implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
