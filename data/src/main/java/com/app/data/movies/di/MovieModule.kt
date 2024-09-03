@@ -9,8 +9,6 @@ import com.app.data.movies.mapper.MovieDomainMapper
 import com.app.data.movies.remote.MovieAPI
 import com.app.data.movies.remote.MovieRemoteSource
 import com.app.domain.movies.MovieRepository
-import com.app.domain.movies.model.Movie
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

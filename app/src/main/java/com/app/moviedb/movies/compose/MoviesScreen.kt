@@ -13,10 +13,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.app.moviedb.base.main.theme.AppTheme
+import com.app.ui_common.components.theme.AppTheme
 import com.app.moviedb.movies.model.MovieUI
 import com.app.moviedb.movies.model.MovieUIState
 import com.app.moviedb.movies.viewmodel.MovieViewModel
+import com.app.ui_common.components.MediaCard
 import com.app.ui_common.components.util.GeneralEmptyScreen
 import com.app.ui_common.components.util.GeneralLoadingScreen
 import kotlinx.collections.immutable.ImmutableList
@@ -53,10 +54,11 @@ fun Movies(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(movies.size) { index ->
-                MovieItem(movie = movies[index])
+                with(movies[index]) {
+                    MediaCard(imageUrl = imageUrl, title = title)
+                }
             }
         }
-
     }
 }
 

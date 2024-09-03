@@ -3,6 +3,7 @@ package com.app.data.base.database
 import android.app.Application
 import androidx.room.Room
 import com.app.data.movies.local.MovieDao
+import com.app.data.series.local.SeriesDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,7 +26,12 @@ object DatabaseModule {
 
 
     @Provides
-    fun provideUserDao(database: RoomDao): MovieDao {
+    fun provideMovieDao(database: RoomDao): MovieDao {
         return database.movieDao()
+    }
+
+    @Provides
+    fun provideSeriesDao(database: RoomDao): SeriesDao {
+        return database.seriesDao()
     }
 }

@@ -26,11 +26,8 @@ interface RepositoryOperation<ResultType, RequestType> {
             val remoteData = createCall()
             saveResult(mapCallResult(remoteData))
         } catch (e: Exception) {
-           // if (NetworkMonitor.getInstance().isConnected()) {
-           //     throw e
-                // If it is connected we need to spread the error.
-                // If it is not connected the request should not break the flow
-         //   }
+
+            throw e
         }
     }
 

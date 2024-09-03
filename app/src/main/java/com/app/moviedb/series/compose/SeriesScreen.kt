@@ -1,5 +1,6 @@
 package com.app.moviedb.series.compose
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -7,17 +8,21 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.app.moviedb.base.main.theme.AppTheme
-import com.app.moviedb.movies.compose.MovieItem
+import com.app.moviedb.base.main.compose.ViewEventHost
+import com.app.ui_common.components.theme.AppTheme
 import com.app.moviedb.movies.model.MovieUI
-import com.app.moviedb.movies.model.MovieUIState
-import com.app.moviedb.movies.viewmodel.MovieViewModel
+import com.app.moviedb.series.model.SeriesUI
+import com.app.moviedb.series.model.SeriesUIState
+import com.app.moviedb.series.viewmodel.SeriesViewModel
+import com.app.ui_common.components.MediaCard
 import com.app.ui_common.components.util.GeneralEmptyScreen
 import com.app.ui_common.components.util.GeneralLoadingScreen
 import kotlinx.collections.immutable.ImmutableList
@@ -26,14 +31,18 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun SeriesScreen(
     innerPadding: PaddingValues,
-    viewModel: MovieViewModel = hiltViewModel(),
+    viewModel: SeriesViewModel = hiltViewModel(),
 ) {
+    ViewEventHost(viewModel)
+    LaunchedEffect(Unit) {
+        viewModel.loadMovies()
+    }
     val stateUI by viewModel.state.collectAsStateWithLifecycle()
     when (val state = stateUI) {
-        is MovieUIState.Loading -> GeneralLoadingScreen()
-        is MovieUIState.Empty -> GeneralEmptyScreen()
-        is MovieUIState.Show -> {
-            Series(innerPadding, state.movies)
+        is SeriesUIState.Loading -> GeneralLoadingScreen()
+        is SeriesUIState.Empty -> GeneralEmptyScreen()
+        is SeriesUIState.Show -> {
+            Series(innerPadding, state.series)
         }
     }
 }
@@ -41,8 +50,10 @@ fun SeriesScreen(
 @Composable
 fun Series(
     innerPadding: PaddingValues,
-    movies: ImmutableList<MovieUI>,
+    series: ImmutableList<SeriesUI>,
 ) {
+    val context = LocalContext.current
+
     Box(
         Modifier
             .padding(innerPadding)
@@ -53,11 +64,14 @@ fun Series(
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(movies.size) { index ->
-                MovieItem(movie = movies[index])
+            items(series.size) { index ->
+                with(series[index]) {
+                    MediaCard(imageUrl = imageUrl, title = title, popularity = voteAverage.toString(), onMediaCardClick = {
+                        Toast.makeText(context, "Item with Id $it clicked", Toast.LENGTH_SHORT).show()
+                    })
+                }
             }
         }
-
     }
 }
 
@@ -68,8 +82,8 @@ fun PreviewSeries() {
         Series(
             PaddingValues(),
             persistentListOf(
-                MovieUI("1", "The Shawshank Redemption", "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg"),
-                MovieUI("3", "The Dark Knight", "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg")
+                SeriesUI("1", "The Shawshank Redemption", "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg", 2.0),
+                SeriesUI("3", "The Dark Knight", "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg", 3.9)
             )
         )
     }

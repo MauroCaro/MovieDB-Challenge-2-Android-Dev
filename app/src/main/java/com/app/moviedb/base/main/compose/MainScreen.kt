@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.app.moviedb.base.navigation.NavigationEffects
-import com.app.moviedb.base.main.theme.AppTheme
+import com.app.ui_common.components.theme.AppTheme
 import com.app.moviedb.base.main.viewmodel.MainViewModel
 
 @Composable

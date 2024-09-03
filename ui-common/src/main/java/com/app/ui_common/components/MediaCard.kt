@@ -1,7 +1,8 @@
-package com.app.moviedb.movies.compose
+package com.app.ui_common.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,21 +20,32 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.app.moviedb.base.main.theme.AppTheme
-import com.app.moviedb.movies.model.MovieUI
+import com.app.ui_common.components.theme.AppTheme
+
 
 @Composable
-fun MovieItem(movie: MovieUI) {
+fun MediaCard(
+    id: String? = null,
+    imageUrl: String,
+    title: String,
+    popularity: String? = null,
+    onMediaCardClick: (id: String) -> Unit = {}
+) {
     Card(
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier
             .fillMaxWidth()
             .aspectRatio(0.7f)
+            .clickable {
+                id?.let {
+                    onMediaCardClick.invoke(id)
+                }
+            }
     ) {
         Box {
             Image(
-                painter = rememberAsyncImagePainter(movie.imageUrl),
-                contentDescription = movie.title,
+                painter = rememberAsyncImagePainter(imageUrl),
+                contentDescription = title,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
             )
@@ -43,12 +55,21 @@ fun MovieItem(movie: MovieUI) {
                     .background(Color.Black.copy(alpha = 0.5f))
             )
             Text(
-                text = movie.title,
+                text = title,
                 style = MaterialTheme.typography.bodyMedium.copy(color = Color.White),
                 modifier = Modifier
                     .align(Alignment.BottomStart)
                     .padding(8.dp)
             )
+            popularity?.let {
+                Text(
+                    text = "Rate $popularity",
+                    style = MaterialTheme.typography.bodySmall.copy(color = Color.Yellow),
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .padding(8.dp)
+                )
+            }
         }
     }
 }
@@ -57,6 +78,6 @@ fun MovieItem(movie: MovieUI) {
 @Preview(showBackground = true)
 fun PreviewMovieItem() {
     AppTheme {
-        MovieItem(MovieUI("1", "The Shawshank Redemption", "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg"))
+        MediaCard("1", "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg", "The Shawshank Redemption", "8.0")
     }
 }

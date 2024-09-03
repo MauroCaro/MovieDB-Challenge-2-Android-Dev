@@ -17,8 +17,6 @@ fun MainNavigation(navController: NavHostController) {
     ) {
         composable(destination = Destination.HomeScreen) {
             HomeScreen()
-            //val loginViewModelL: LoginViewModel = hiltViewModel()
-            // ViewEventHost(loginViewModelL)
         }
         composable(destination = Destination.DetailScreen) {
         }
